@@ -1,9 +1,11 @@
 
+from PyQt5.QtCore import QVariant
+
+
 class TreeItem:
     """
     This is a basic class. It is used to hold column data and information about its position in the tree structure.
     """
-    # display_string_column = 0
 
     def __init__(self, data, parent=None):
         """
@@ -54,10 +56,10 @@ class TreeItem:
         :param column:
         :type column: int
         :return:
-        :rtype: str
+        :rtype: QVariant
         """
         if (column < 0) or (column >= len(self._itemData)):
-            return ''
+            return QVariant()
         return self._itemData[column]
 
     def row(self):

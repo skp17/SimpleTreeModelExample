@@ -10,9 +10,9 @@ class TreeModel(QtCore.QAbstractItemModel):
         self._root_item = TreeItem(["Title", "Summary"])
         self._setup_model_data(data.split('\n'), self._root_item)
 
-    def data(self, index: QtCore.QModelIndex, role: int = ...) -> str:
+    def data(self, index: QtCore.QModelIndex, role: int = ...) -> QtCore.QVariant():
         if not index.isValid():
-            return ''
+            return QtCore.QVariant()
 
         if role == QtCore.Qt.DisplayRole:
             item: TreeItem = index.internalPointer()
@@ -24,7 +24,7 @@ class TreeModel(QtCore.QAbstractItemModel):
 
         return QtCore.QAbstractItemModel.flags(self, index)
 
-    def headerData(self, section: int, orientation: QtCore.Qt.Orientation, role: int = ...) -> str:
+    def headerData(self, section: int, orientation: QtCore.Qt.Orientation, role: int = ...) -> QtCore.QVariant():
         if role == QtCore.Qt.DisplayRole:
             if orientation == QtCore.Qt.Horizontal:
                 return self._root_item.data(section)
